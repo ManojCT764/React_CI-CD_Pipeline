@@ -20,3 +20,11 @@ jobs:
               run: |
                   node -v
                   npm -v
+
+            - name: "Clone The repository"
+              uses: actions/checkout@v2
+            
+            - name: "Install dependencies"
+              run: npm install
+
+              
