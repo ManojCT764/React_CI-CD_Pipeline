@@ -1,0 +1,30 @@
+name: "CD Pipeline / Workflow"
+
+on:
+    workflow_run:
+        workflows: ["Sample CI Pipeline / Workflow"]
+        types:
+            - completed
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: "Setup Node.js"
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "22.20.0"
+
+            - name: "Setup vercel CLI"
+              run: npm install -g vercel
+
+            - name: "Download Production Build Artifacts"
+              uses: actions/download-artifact@v4
+              with:
+                  name: production-build
+                  run-id: ${{ github.event.workflow_run.id }}
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: "Deploy to Vercel"
+              run: vercel --prod --token ${{ secrets.Vercel_Token }} --confirm --cwd ./production-build
