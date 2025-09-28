@@ -1,16 +1,27 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React CI/CD with GitHub Actions & Vercel
+This project demonstrates a modern CI/CD (Continuous Integration and Continuous Deployment) workflow for a React application using GitHub Actions and Vercel.
 
-Currently, two official plugins are available:
+CI/CD Overview
+Continuous Integration (CI):
+Every time you push code or open a pull request, GitHub Actions automatically runs your test suite to ensure your React app builds and passes all tests. This helps catch issues early and maintain code quality.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Continuous Deployment (CD):
+When the CI workflow completes successfully, a separate CD pipeline is triggered. This pipeline downloads the production build artifacts and deploys them to Vercel, making your latest changes live automatically.
 
-## React Compiler
+GitHub Actions Workflows
+CI Workflow:
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Installs dependencies
+Runs tests using Vitest and React Testing Library
+Builds the production-ready React app
+Uploads the build artifacts for deployment
+CD Workflow:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Waits for the CI workflow to complete
+Downloads the production build artifacts
+Deploys the app to Vercel using the Vercel CLI and a secure token stored in GitHub Secrets
+Key Benefits
+Automated Testing: Ensures code reliability with every change.
+Seamless Deployment: No manual steps—production is always up to date.
+Secure: Sensitive tokens are managed with GitHub Secrets.
