@@ -9,7 +9,8 @@ on:
 jobs:
     deploy:
         runs-on: ubuntu-latest
-
+        environment: production
+    
         steps:
             - name: "Setup Node.js"
               uses: actions/setup-node@v4
@@ -27,4 +28,6 @@ jobs:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: "Deploy to Vercel"
-              run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --confirm --name=cicdproject
+              run: vercel --prod --token=$VERCEL_TOKEN --confirm --name=cicdproject
+              env:
+                  VERCEL_TOKEN: ${{ secrets.REACT_CICD }}
