@@ -1,5 +1,6 @@
 
 React CI/CD with GitHub Actions & Vercel
+
 This project demonstrates a modern CI/CD (Continuous Integration and Continuous Deployment) workflow for a React application using GitHub Actions and Vercel.
 
 CI/CD Overview
